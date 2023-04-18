@@ -1,9 +1,14 @@
-import { shopifyClient } from "../lib/shopify";
+import { Layout } from "@/components";
+import { shopifyClient } from "@/lib/shopify";
 import { GetServerSideProps } from "next";
 
 export default function Home(json: any) {
   console.log(json);
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  return (
+    <Layout>
+      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+    </Layout>
+  );
 }
 
 const GRAPHQL_QUERY = `
