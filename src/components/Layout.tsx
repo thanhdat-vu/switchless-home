@@ -18,6 +18,7 @@ import {
   FacebookLogo,
   InstagramLogo,
 } from "@phosphor-icons/react";
+import { IconLink } from "./IconLink";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -105,13 +106,7 @@ function DesktopHeader() {
         </nav>
         <div className="flex space-x-5">
           {menu.actions.map((action) => (
-            <Link
-              href={action.to}
-              key={action.id}
-              className="p-2 rounded-full shadow hover:shadow-md active:bg-gray-50 active:shadow-none"
-            >
-              {action.icon}
-            </Link>
+            <IconLink key={action.id} to={action.to} icon={action.icon} />
           ))}
         </div>
       </div>
@@ -154,23 +149,23 @@ function Footer() {
         items: [
           {
             id: 1,
-            to: "/about",
-            label: "About Us",
+            to: "/contact-us",
+            label: "Contact Us",
           },
           {
             id: 2,
-            to: "/careers",
-            label: "Careers",
+            to: "/returns-and-refunds",
+            label: "Returns & Refunds",
           },
           {
             id: 3,
-            to: "/privacy-policy",
-            label: "Privacy Policy",
+            to: "/shipping-and-delivery",
+            label: "Shipping & Delivery",
           },
           {
             id: 4,
-            to: "/terms-and-conditions",
-            label: "Terms & Conditions",
+            to: "/faq",
+            label: "FAQ",
           },
         ],
       },
@@ -245,13 +240,14 @@ function Footer() {
             <h3 className="font-medium mb-2">
               Sign up to get 10% off your first order
             </h3>
-            <form className="flex w-80 bg-white border border-gray-200 rounded-lg shadow">
+            <form className="flex w-80 bg-white border border-gray-200 rounded-lg shadow focus-within:border-blue-300">
               <input
-                type="text"
+                type="email"
                 placeholder="Your email address"
                 className="w-full px-4 py-2 bg-transparent border-none focus:outline-none"
               />
               <button
+                type="submit"
                 aria-label="Sign Up"
                 className="p-2 m-0 hover:text-blue-600"
               >
@@ -261,15 +257,15 @@ function Footer() {
           </div>
           <div>
             <h3 className="font-medium mb-1">Follow Us</h3>
-            {footer.socialMedia.map((socialMedia) => (
-              <Link
-                key={socialMedia.id}
-                href={socialMedia.to}
-                className={`inline-block p-2 ml-3 rounded-full shadow hover:bg-gray-50 hover:shadow-md active:bg-gray-100 active:shadow-none`}
-              >
-                {socialMedia.icon}
-              </Link>
-            ))}
+            <div className="space-x-3">
+              {footer.socialMedia.map((socialMedia) => (
+                <IconLink
+                  key={socialMedia.id}
+                  to={socialMedia.to}
+                  icon={socialMedia.icon}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
