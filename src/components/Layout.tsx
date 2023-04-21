@@ -23,7 +23,7 @@ import { IconLink } from "./IconLink";
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="text-gray-900 antialiased">
-      <Header />
+      {/* <Header /> */}
       <main>{children}</main>
       <Footer />
     </div>
@@ -199,48 +199,49 @@ function Footer() {
     ],
   };
   return (
-    <div className="bg-gray-50 p-10">
-      <div className="flex justify-between">
-        <div>
-          <Link href="/" className="inline-block">
+    <footer className="bg-gray-50 p-10">
+      <div className="flex justify-between flex-col xl:flex-row">
+        <div className="flex justify-between mb-10 xl:mb-0 flex-col lg:flex-row items-center lg:items-start">
+          <Link href="/">
             <Image src={Logo} alt="Switchless Home Logo" width={79} />
           </Link>
-        </div>
-        <div className="w-80 space-y-3">
-          <h3 className="font-semibold">
-            Smart home solutions for a seamless life.
-          </h3>
-          <p className="text-sm text-justify">
-            Transform your home with smart devices. Shop now for a connected and
-            energy-efficient space. Start shopping today!
-          </p>
-          <Image
-            src={TrustBadges}
-            alt="Trust Badges"
-            width={320}
-            className="mx-auto"
-          />
-        </div>
-        {footer.quickLinks.map((quickLink) => (
-          <div key={quickLink.id} className="space-y-4">
-            <h3 className="font-semibold">{quickLink.title}</h3>
-            <ul className="space-y-4">
-              {(quickLink.items || []).map((item) => (
-                <li key={item.id}>
-                  <Link href={item.to} className="hover:text-blue-600">
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          <div className="grow flex justify-between flex-col lg:flex-row xl:flex-col items-center lg:ml-20">
+            <div className="w-80 my-5 lg:m-0 xl:mb-5">
+              <h3 className="font-semibold mb-1 text-center lg:text-left">
+                Smart home solutions for a seamless life.
+              </h3>
+              <p className="text-sm text-justify">
+                Transform your home with smart devices. Shop now for a connected
+                and energy-efficient space. Start shopping today!
+              </p>
+            </div>
+            <Image src={TrustBadges} alt="Trust Badges" height={70} />
           </div>
-        ))}
-        <div className="text-right space-y-10">
-          <div>
+        </div>
+        <div className="grow max-w-[15%]"></div>
+        <div className="grow flex justify-between flex-col-reverse lg:flex-row">
+          {footer.quickLinks.map((quickLink) => (
+            <div
+              key={quickLink.id}
+              className="space-y-4 text-center lg:text-left mt-10 lg:mt-0"
+            >
+              <h3 className="font-semibold">{quickLink.title}</h3>
+              <ul className="space-y-4">
+                {(quickLink.items || []).map((item) => (
+                  <li key={item.id}>
+                    <Link href={item.to} className="hover:text-blue-600">
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+          <div className="text-center lg:text-right">
             <h3 className="font-medium mb-2">
               Sign up to get 10% off your first order
             </h3>
-            <form className="flex w-80 bg-white border border-gray-200 rounded-lg shadow focus-within:border-blue-300">
+            <form className="flex w-80 bg-white border border-gray-200 rounded-lg shadow focus-within:border-blue-300 mx-auto mb-10">
               <input
                 type="email"
                 placeholder="Your email address"
@@ -249,13 +250,11 @@ function Footer() {
               <button
                 type="submit"
                 aria-label="Sign Up"
-                className="p-2 m-0 hover:text-blue-600"
+                className="p-2 hover:text-blue-600"
               >
                 <PaperPlaneTilt size={24} weight={"light"} />
               </button>
             </form>
-          </div>
-          <div>
             <h3 className="font-medium mb-1">Follow Us</h3>
             <div className="space-x-3">
               {footer.socialMedia.map((socialMedia) => (
@@ -269,9 +268,11 @@ function Footer() {
           </div>
         </div>
       </div>
-      <hr className="h-px mt-8 mb-4 bg-gray-200 border-0" />
-      <div className="flex justify-between items-center">
-        <p className="text-sm">Copyright &copy; 2023 - All Rights Reserved</p>
+      <hr className="h-px mt-10 mb-5 bg-gray-200 border-0" />
+      <div className="flex justify-between items-center flex-col lg:flex-row">
+        <p className="text-sm mb-5 lg:mb-0">
+          Copyright &copy; 2023 - All Rights Reserved
+        </p>
         <div className="flex space-x-2">
           <PaymentLogo src={Visa} alt="Visa Logo" />
           <PaymentLogo src={MasterCard} alt="MasterCard Logo" />
@@ -280,7 +281,7 @@ function Footer() {
           <PaymentLogo src={GooglePay} alt="Google Pay Logo" />
         </div>
       </div>
-    </div>
+    </footer>
   );
 }
 
