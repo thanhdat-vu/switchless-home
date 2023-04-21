@@ -23,7 +23,7 @@ import { IconLink } from "./IconLink";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="text-gray-900 antialiased">
+    <div className="font-custom text-gray-900 antialiased">
       <Header />
       <main>{children}</main>
       <Footer />
@@ -244,8 +244,8 @@ function Footer() {
                 Smart home solutions for a seamless life.
               </h3>
               <p className="text-sm text-justify">
-                Transform your home with smart devices. Shop now for a connected
-                and energy-efficient space. Start shopping today!
+                Transform your home with smart devices. Shop right now for a
+                connected and energy-efficient space. Start upgrading today!
               </p>
             </div>
             <Image src={TrustBadges} alt="Trust Badges" height={70} />
