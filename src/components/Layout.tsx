@@ -11,6 +11,7 @@ import {
   MagnifyingGlass,
   ShoppingCartSimple,
   User,
+  List,
   PaperPlaneTilt,
   TiktokLogo,
   TwitterLogo,
@@ -23,7 +24,7 @@ import { IconLink } from "./IconLink";
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="text-gray-900 antialiased">
-      {/* <Header /> */}
+      <Header />
       <main>{children}</main>
       <Footer />
     </div>
@@ -31,14 +32,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 function Header() {
-  return (
-    <>
-      <DesktopHeader />
-    </>
-  );
-}
-
-function DesktopHeader() {
   const menu = {
     items: [
       {
@@ -86,29 +79,69 @@ function DesktopHeader() {
     ],
   };
   return (
-    <header>
-      <div className="flex justify-between items-center px-5 py-2">
-        <div className="w-40">
-          <Link href="/" className="inline-block">
-            <Image src={Logo} alt="Switchless Home Logo" width={79} />
+    <>
+      <DesktopHeader menu={menu} />
+      <MobileHeader menu={menu} />
+    </>
+  );
+}
+
+interface Menu {
+  items: {
+    id: number;
+    to: string;
+    label: string;
+  }[];
+  actions: {
+    id: number;
+    to: string;
+    icon: React.ReactNode;
+  }[];
+}
+
+function DesktopHeader({ menu }: { menu: Menu }) {
+  return (
+    <header className="hidden lg:flex justify-between items-center px-5 py-2">
+      <div className="w-40">
+        <Link href="/" className="inline-block">
+          <Image src={Logo} alt="Switchless Home Logo" height={40} />
+        </Link>
+      </div>
+      <nav className="space-x-16">
+        {menu.items.map((item) => (
+          <Link
+            key={item.id}
+            href={item.to}
+            className="font-normal hover:text-blue-600 hover:font-medium"
+          >
+            {item.label}
           </Link>
-        </div>
-        <nav className="space-x-16">
-          {menu.items.map((item) => (
-            <Link
-              key={item.id}
-              href={item.to}
-              className="font-normal hover:text-blue-600 hover:font-medium"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-        <div className="flex space-x-5">
-          {menu.actions.map((action) => (
-            <IconLink key={action.id} to={action.to} icon={action.icon} />
-          ))}
-        </div>
+        ))}
+      </nav>
+      <div className="flex space-x-5">
+        {menu.actions.map((action) => (
+          <IconLink key={action.id} to={action.to} icon={action.icon} />
+        ))}
+      </div>
+    </header>
+  );
+}
+
+function MobileHeader({ menu }: { menu: Menu }) {
+  return (
+    <header className="lg:hidden flex justify-between items-center px-2 py-3">
+      <div className="flex space-x-2">
+        <button className="p-2 rounded-full shadow hover:shadow-md active:bg-gray-100 active:shadow-none">
+          <List size={24} width={"light"} />
+        </button>
+        <Link href="/" className="inline-block">
+          <Image src={Logo} alt="Switchless Home Logo" height={40} />
+        </Link>
+      </div>
+      <div className="flex space-x-2">
+        {menu.actions.map((action) => (
+          <IconLink key={action.id} to={action.to} icon={action.icon} />
+        ))}
       </div>
     </header>
   );
@@ -199,11 +232,11 @@ function Footer() {
     ],
   };
   return (
-    <footer className="bg-gray-50 p-10">
+    <footer className="bg-gray-50 p-5 lg:p-10">
       <div className="flex justify-between flex-col xl:flex-row">
         <div className="flex justify-between mb-10 xl:mb-0 flex-col lg:flex-row items-center lg:items-start">
           <Link href="/">
-            <Image src={Logo} alt="Switchless Home Logo" width={79} />
+            <Image src={Logo} alt="Switchless Home Logo" height={40} />
           </Link>
           <div className="grow flex justify-between flex-col lg:flex-row xl:flex-col items-center lg:ml-20">
             <div className="w-80 my-5 lg:m-0 xl:mb-5">
