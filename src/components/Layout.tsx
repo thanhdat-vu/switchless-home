@@ -132,7 +132,7 @@ function MobileHeader({ menu }: { menu: Menu }) {
     <header className="lg:hidden flex justify-between items-center px-2 py-3">
       <div className="flex space-x-2">
         <button className="p-2 rounded-full shadow hover:shadow-md active:bg-gray-100 active:shadow-none">
-          <List size={24} width={"light"} />
+          <List size={24} weight={"light"} />
         </button>
         <Link href="/" className="inline-block">
           <Image src={Logo} alt="Switchless Home Logo" height={40} />
