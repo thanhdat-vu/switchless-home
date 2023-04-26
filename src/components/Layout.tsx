@@ -25,7 +25,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="font-custom text-gray-900 antialiased">
       <Header />
-      <main>{children}</main>
+      <main className="text-sm lg:text-base">{children}</main>
       <Footer />
     </div>
   );
